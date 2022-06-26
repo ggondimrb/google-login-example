@@ -20,7 +20,7 @@ export type MatchType = {
 }
 
 export function Dashboard() {
-  const { getToken, getUser } = useAuth();
+  const { getUser } = useAuth();
   const [matchs, setMatchs] = useState<MatchType[] | undefined>();
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export function Dashboard() {
           setMatchs(response.data)
         })
         .catch(error => {
-          alert('Erro ao logar:' + error)
+          alert('Erro ao carregar partidas:' + error)
         })
     }
 

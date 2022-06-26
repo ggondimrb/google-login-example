@@ -2,6 +2,7 @@ import axios from "axios";
 
 const headers = {
   "Access-Control-Allow-Origin": "*",
+  "Authorization": 'Token ' + localStorage.getItem('token')
 };
 
 const api = axios.create({

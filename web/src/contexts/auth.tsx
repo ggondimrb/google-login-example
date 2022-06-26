@@ -6,6 +6,7 @@ interface AuthContextData {
   getLoading(): boolean;
   getToken(): string;
   getUser(): UserType | undefined;
+  getIsAuthenticated(): boolean;
 }
 
 type AuthContextProviderProps = {
@@ -27,6 +28,7 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export function AuthProvider({ children }: AuthContextProviderProps) {
 
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
   const [user, setUser] = useState<UserType>();
 
@@ -40,7 +42,9 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       .then((response: { data: LoginResponse }) => {
         setUser(response.data)
         setToken(response.data.token)
-        api.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token
+        api.defaults.headers.common['Authorization'] = 'Token ' + response.data.token
+        localStorage.setItem('token', response.data.token);
+        setIsAuthenticated(true)
       })
       .catch(error => {
         alert('Erro ao logar:' + error)
@@ -61,11 +65,16 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     return user;
   }
 
+  const getIsAuthenticated = () => {
+    return isAuthenticated;
+  }
+
   const store = {
     signInWithGoogle,
     getLoading,
     getToken,
-    getUser
+    getUser,
+    getIsAuthenticated
   }
 
   return (

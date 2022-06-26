@@ -2,7 +2,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 
-const REACT_APP_GOOGLE_CLIENT_ID = "";
+const REACT_APP_GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export function SignIn() {
   let navigate = useNavigate();

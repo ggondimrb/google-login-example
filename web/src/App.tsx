@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Routes, Route, Outlet, Navigate } from 'react-
 import { Dashboard } from "./pages/Dashboard";
 import { AuthProvider } from "./contexts/auth";
 
-const clientId = ""
+const VITE_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 
 function App() {
 
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: clientId,
+        clientId: VITE_CLIENT_ID,
         scope: ""
       })
     }
