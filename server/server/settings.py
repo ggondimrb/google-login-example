@@ -159,11 +159,4 @@ GOOGLE_OAUTH2_CLIENT_SECRET = "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"
 BASE_BACKEND_URL = 'http://localhost:8000'
 
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # )
-}
+REST_FRAMEWORK = {}
