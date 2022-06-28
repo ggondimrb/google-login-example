@@ -11,4 +11,4 @@ class MatchListView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        return Response(Match.objects.all().values())
+        return Response(Match.objects.filter(user_id=request.user.id).values())

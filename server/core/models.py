@@ -12,3 +12,6 @@ class Match(models.Model):
     championship = models.CharField(max_length=100)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     match_hour = models.CharField(max_length=5)
+
+    def __str__(self):
+        return f'{self.home_team} {self.home_score}x{self.away_score} {self.away_team}'
