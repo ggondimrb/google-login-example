@@ -8,9 +8,8 @@ export function Routes() {
   const { getIsAuthenticated } = useAuth();
 
   const PrivateRoutes = () => {
-    let auth = { 'token': getIsAuthenticated() }
     return (
-      auth.token ? <Outlet /> : <Navigate to='/' />
+      getIsAuthenticated() ? <Outlet /> : <Navigate to='/' />
     )
   }
 
