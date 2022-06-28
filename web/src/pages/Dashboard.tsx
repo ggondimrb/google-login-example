@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { usePrivateApi } from "../usePrivateApi";
 import { MatchData } from "../components/MatchData";
 import { useAuth } from "../contexts/auth"
+import { useNavigate } from "react-router-dom";
 
 type MatchResponse = {
   data: MatchType[]
@@ -21,18 +22,20 @@ export type MatchType = {
 
 export function Dashboard() {
   const privateApi = usePrivateApi();
-  const { getUser } = useAuth();
+  const { getUser, logout } = useAuth();
   const [matchs, setMatchs] = useState<MatchType[] | undefined>();
+  let navigate = useNavigate();
 
   useEffect(() => {
     async function loadMatchs() {
-      console.log(privateApi.defaults.headers)
       await privateApi.get('matchs/')
         .then((response: MatchResponse) => {
           setMatchs(response.data)
         })
         .catch(error => {
-          alert('Erro ao carregar partidas:' + error)
+          alert('Erro ao carregar partidas.');
+          logout();
+          navigate('/');
         })
     }
 

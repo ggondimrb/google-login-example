@@ -5,8 +5,9 @@ interface AuthContextData {
   signInWithGoogle: (accessToken: string) => void;
   getLoading(): boolean;
   getToken(): string;
-  getUser(): UserType | undefined;
+  getUser(): UserType;
   getIsAuthenticated(): boolean;
+  logout: () => void;
 }
 
 type AuthContextProviderProps = {
@@ -30,7 +31,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   const [loading, setLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState('');
-  const [user, setUser] = useState<UserType>();
+  const [user, setUser] = useState<UserType>({} as UserType);
 
   async function signInWithGoogle(accessToken: string) {
 
@@ -67,12 +68,19 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     return isAuthenticated;
   }
 
+  function logout() {
+    setUser({} as UserType);
+    setIsAuthenticated(false);
+    setToken('');
+  }
+
   const store = {
     signInWithGoogle,
     getLoading,
     getToken,
     getUser,
-    getIsAuthenticated
+    getIsAuthenticated,
+    logout
   }
 
   return (

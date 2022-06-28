@@ -6,7 +6,6 @@ export const usePrivateApi = () => {
   const { getToken } = useAuth();
 
   useEffect(() => {
-    console.log('token', getToken())
     const requestIntercept = privateApi.interceptors.request.use(
       config => {
         if (config.headers && !config.headers['Authorization']) {
