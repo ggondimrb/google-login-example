@@ -16,15 +16,7 @@ export function SignIn() {
   }, [getIsAuthenticated])
 
   async function onGoogleLoginSuccess(response: any) {
-    const idToken = response.tokenId;
-    const data = {
-      email: response.profileObj.email,
-      first_name: response.profileObj.givenName,
-      last_name: response.profileObj.familyName
-    };
-
-    signInWithGoogle(response.accessToken)
-
+    signInWithGoogle(response.accessToken);
   };
 
   function onGoogleLoginFailure(e: any) {

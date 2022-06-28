@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { usePrivateApi } from "../usePrivateApi";
 import { MatchData } from "../components/MatchData";
-import { useAuth } from "../contexts/auth"
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/auth";
 
 type MatchResponse = {
   data: MatchType[]
@@ -24,7 +23,6 @@ export function Dashboard() {
   const privateApi = usePrivateApi();
   const { getUser, logout } = useAuth();
   const [matchs, setMatchs] = useState<MatchType[] | undefined>();
-  let navigate = useNavigate();
 
   useEffect(() => {
     async function loadMatchs() {
