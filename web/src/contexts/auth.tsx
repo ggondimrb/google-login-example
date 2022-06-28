@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { api, privateApi } from "../api";
+import { api } from "../api";
 
 interface AuthContextData {
   signInWithGoogle: (accessToken: string) => void;

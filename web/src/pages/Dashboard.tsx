@@ -37,7 +37,6 @@ export function Dashboard() {
     }
 
     loadMatchs();
-
   }, [privateApi])
 
   return (
