@@ -5,9 +5,10 @@ import { Dashboard } from "./pages/Dashboard";
 import { useAuth } from './contexts/auth';
 
 export function Routes() {
+  const { getIsAuthenticated } = useAuth();
 
   const PrivateRoutes = () => {
-    let auth = { 'token': true }
+    let auth = { 'token': getIsAuthenticated() }
     return (
       auth.token ? <Outlet /> : <Navigate to='/' />
     )

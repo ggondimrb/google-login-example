@@ -35,7 +35,6 @@ export function Dashboard() {
         .catch(error => {
           alert('Erro ao carregar partidas.');
           logout();
-          navigate('/');
         })
     }
 
