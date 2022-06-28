@@ -2,7 +2,7 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
-from core.api.services import get_or_create_google_user
+from core.services import get_or_create_google_user
 
 
 class CustomAuthToken(ObtainAuthToken):
