@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api";
+import { usePrivateApi } from "../usePrivateApi";
 import { MatchData } from "../components/MatchData";
 import { useAuth } from "../contexts/auth"
 
@@ -20,12 +20,14 @@ export type MatchType = {
 }
 
 export function Dashboard() {
+  const privateApi = usePrivateApi();
   const { getUser } = useAuth();
   const [matchs, setMatchs] = useState<MatchType[] | undefined>();
 
   useEffect(() => {
     async function loadMatchs() {
-      await api.get('matchs/')
+      console.log(privateApi.defaults.headers)
+      await privateApi.get('matchs/')
         .then((response: MatchResponse) => {
           setMatchs(response.data)
         })
@@ -36,7 +38,7 @@ export function Dashboard() {
 
     loadMatchs();
 
-  }, [])
+  }, [privateApi])
 
   return (
     <main className="bg-gray-100 dark:bg-gray-800 h-screen overflow-hidden relative">

@@ -1,13 +1,11 @@
 import axios from "axios";
+const BASE_URL = "http://localhost:8000/api/"
 
-const headers = {
-  "Access-Control-Allow-Origin": "*",
-  "Authorization": 'Token ' + localStorage.getItem('token')
-};
-
-const api = axios.create({
-  baseURL: "http://localhost:8000/api/",
-  headers,
+export const api = axios.create({
+  baseURL: BASE_URL,
 });
 
-export default api;
+export const privateApi = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true
+});

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
@@ -6,8 +7,13 @@ const REACT_APP_GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export function SignIn() {
   let navigate = useNavigate();
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, getIsAuthenticated } = useAuth();
 
+  useEffect(() => {
+    if (getIsAuthenticated()) {
+      navigate('/dashboard');
+    }
+  }, [getIsAuthenticated])
 
   async function onGoogleLoginSuccess(response: any) {
     const idToken = response.tokenId;
@@ -16,11 +22,8 @@ export function SignIn() {
       first_name: response.profileObj.givenName,
       last_name: response.profileObj.familyName
     };
-    console.log(response.accessToken)
-    console.log(idToken)
-    console.log(data)
+
     signInWithGoogle(response.accessToken)
-    navigate('/dashboard');
 
   };
 

@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import api from "../api";
+import { api, privateApi } from "../api";
 
 interface AuthContextData {
   signInWithGoogle: (accessToken: string) => void;
@@ -42,9 +42,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       .then((response: { data: LoginResponse }) => {
         setUser(response.data)
         setToken(response.data.token)
-        api.defaults.headers.common['Authorization'] = 'Token ' + response.data.token
-        localStorage.setItem('token', response.data.token);
-        setIsAuthenticated(true)
+        setIsAuthenticated(true);
       })
       .catch(error => {
         alert('Erro ao logar:' + error)
