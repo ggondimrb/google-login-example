@@ -12,7 +12,7 @@ class CustomAuthToken(ObtainAuthToken):
         if 'access_token' in request.data:
             user = get_or_create_google_user(request.data['access_token'])
 
-        token, created = Token.objects.get_or_create(user=user)
+        token, _ = Token.objects.get_or_create(user=user)
 
         return Response({
             'token': token.key,
