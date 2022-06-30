@@ -4,8 +4,8 @@ type MatchDataProps = {
   match: MatchType;
 }
 
-export function MatchData(data: MatchDataProps) {
-  const { match } = data;
+export function MatchData(props: MatchDataProps) {
+  const { match } = props;
   return (
     <div className="w-full shadow-lg px-7 py-1 bg-white dark:bg-gray-400 flex flex-col items-center rounded-md	">
       <span>
