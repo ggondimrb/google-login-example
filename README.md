@@ -47,5 +47,6 @@ $ py manage.py runserver
 [django]: https://www.djangoproject.com/
 [django-rest-framework]: https://www.django-rest-framework.org/
 [python]: https://www.python.org/
+[react]: https://reactjs.org/
 [tailwind]: https://tailwindcss.com/
 [node]: https://nodejs.org/en/
