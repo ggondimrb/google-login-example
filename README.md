@@ -29,6 +29,7 @@ $ cd web
 $ npm build
 # start the project
 $ npm run dev
+# running on port 3000
 
 # start the Python virtual machine 
 $ cd server/venv/Scripts
